@@ -1,47 +1,46 @@
-import React from 'react'
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
+import React from 'react';
+import { SafeAreaView, View, FlatList, StyleSheet, Text, StatusBar } from 'react-native';
 
 import CustomStatusBar from '../../components/statusbar';
+import styles from '../../components/styles';
+
+const DATA = [
+  {
+    id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
+    title: 'First Item',
+  },
+  {
+    id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
+    title: 'Second Item',
+  },
+  {
+    id: '58694a0f-3da1-471f-bd96-145571e29d72',
+    title: 'Third Item',
+  },
+];
+
+const Item = ({ title }) => (
+  <View style={styles.postItem}>
+    <Text style={styles.postTitle}>{title}</Text>
+  </View>
+);
 
 const Screen = ({navigation}) => {
-    return (
-        <View style={styles.screen}>
-        <CustomStatusBar/>
 
-            <Text style={styles.text}>I am screen1</Text>
-            <TouchableOpacity
-                onPress={()=>navigation.navigate('Screen Dummy',{msg:"This param"})}
-                style={styles.button}
-            >
-                <Text style={styles.buttonText}>Click Me!</Text>
-            </TouchableOpacity>
-        </View>
+  const renderItem = ({ item }) => (
+    <Item title={item.title} />
+  );
+
+    return (
+      <SafeAreaView style={styles.screen}>
+        <CustomStatusBar/>
+        <FlatList
+          data={DATA}
+          renderItem={renderItem}
+          keyExtractor={item => item.id}
+        />
+      </SafeAreaView>
     )
 }
 
-export default Screen
-
-const styles = StyleSheet.create({
-    screen:{
-        flex:1,
-        display:'flex',
-        justifyContent:'center',
-        alignItems:'center',
-        backgroundColor:'#fff',
-    },
-    text:{
-        color:'#000',
-        fontWeight:'700',
-        fontSize:30
-    },
-    button:{
-        backgroundColor:'#0275d8',
-        paddingVertical: 5,
-        paddingHorizontal: 10
-
-    },
-    buttonText:{
-        color:'#fff',
-        fontSize:25
-    }
-})
+export default Screen;

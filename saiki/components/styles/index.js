@@ -1,14 +1,11 @@
 import { StyleSheet } from 'react-native';
-import { COLOR_PRIMARY, BORDER_RADIUS } from './common';
+import * as DefVar from './common';
 export default StyleSheet.create({
-  container: {
-    borderRadius: BORDER_RADIUS,
+  screen:{
+      flex:1,
+      display:'flex',
+      backgroundColor:'#ffffff',
   },
-  button: {
-    backgroundColor: COLOR_PRIMARY,
-    borderRadius: BORDER_RADIUS,
-  },
-  //-
   searchSection: {
       flex: 1,
       flexDirection: 'row',
@@ -26,10 +23,21 @@ export default StyleSheet.create({
       paddingBottom: 3,
       paddingLeft: 10,
       backgroundColor: '#f2f2f2',
-      color: '#606060',
+      color: DefVar.COLOR_FONT_PRIMARY,
       height: 35,
       borderColor: '#eeeeee',
       borderWidth: 1,
       borderRadius: 5
+  },
+  //-
+  postItem: {
+    alignItems: 'stretch',
+    backgroundColor: '#EEE',
+    padding: 50,
+    marginVertical: 2,
+    marginHorizontal: 0,
+  },
+  postTitle: {
+    fontSize: 32,
   },
 });
